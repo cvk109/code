@@ -3,7 +3,7 @@ Advent of Code
 Day 2 - Dive!
 '''
 
-debug = 1
+debug = 0
 
 
 def get_final_position(input):
