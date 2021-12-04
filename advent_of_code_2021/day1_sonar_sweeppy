@@ -1,0 +1,36 @@
+'''
+Advent of Code
+0.0.0.0:2021
+Day 1: Sonar Sweep
+'''
+
+import os
+debug = 0
+
+def check_depth_change(input, window_size=1):
+    '''For a given list of inputs, for each element,
+       checks if depth has increased, decreased or 
+       if it has stayed the same.
+    '''
+    output = ["N/A - no previous measurement"]
+    if len(input) > 1:
+        for i in range(1, len(input)-(window_size-1)):
+            if debug:
+                print('comparing : {} {} and {} {}'.format(input[i:i+window_size], sum(input[i:i+window_size]), input[(i-1):(i-1+window_size)], sum(input[(i-1):(i-1+window_size)])))
+            if sum(input[i:i+window_size]) > sum(input[(i-1):(i-1+window_size)]):
+                output.append("increased")
+            elif sum(input[i:i+window_size]) > sum(input[(i-1):(i-1+window_size)]):
+                output.append("decreased")
+            elif sum(input[i:i+window_size]) > sum(input[(i-1):(i-1+window_size)]):
+                output.append("no change")
+    return output
+
+
+if __name__ == "__main__":
+    with open('input1.txt') as file:
+        input = file.readlines()
+        input = [line.strip() for line in input]
+    input = [int(elem) for elem in input]
+    output = check_depth_change(input, window_size=1)
+    count = output.count("increased")
+    print("Measurements have increased : {} times".format(str(count)))
